@@ -48,7 +48,7 @@ marginTop:200,
     empty:{
         height:2,
         width:90,
-        backgroundColor:'red'
+        backgroundColor:'#e83a63'
     },
   });
   
