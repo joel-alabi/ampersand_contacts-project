@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export default class WelcomeScreen extends Component {
     render() {
