@@ -5,6 +5,7 @@ import MemberProfile from './DetailScreen/MemberProfile';
 import MyProfile from './DetailScreen/MyProfile';
 import RegisterScreen from './LoginScreen/RegisterScreen';
 import SignInScreen from './LoginScreen/SignInScreen';
+import QrcodeDetails from './QRCodeDeatail/QrcodeDetails';
 import Ampersand from './Welcome/Ampersand';
 import WelcomeScreen from './Welcome/WelcomeScreen';
 
@@ -16,9 +17,9 @@ export default function App() {
         {/* <SignInScreen/>*/}
          {/*<RegisterScreen/> */}
           {/* <MyProfile/>*/}
-      
-      <MemberProfile/>
-      {/* */}
+      <QrcodeDetails/>
+     
+      {/*  <MemberProfile/>*/}
      
       
       <StatusBar style="auto" />
