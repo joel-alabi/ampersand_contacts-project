@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import MemberProfile from './DetailScreen/MemberProfile';
 import MyProfile from './DetailScreen/MyProfile';
 import RegisterScreen from './LoginScreen/RegisterScreen';
 import SignInScreen from './LoginScreen/SignInScreen';
@@ -14,9 +15,9 @@ export default function App() {
        {/* <WelcomeScreen/>*/}
         {/* <SignInScreen/>*/}
          {/*<RegisterScreen/> */}
-          {/* */}
-      <MyProfile/>
+          {/* <MyProfile/>*/}
       
+      <MemberProfile/>
       {/* */}
      
       

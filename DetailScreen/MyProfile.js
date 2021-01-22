@@ -13,7 +13,7 @@ export default function MyProfile() {
 
                 <View style={styles.Info}>
                    <View style={styles.profile}>
-                    <Image source={require('../assets/ishant-mishra-napAS8Izafs-unsplash.jpg')} style={styles.image} />
+                    <Image source={require('../assets/etty-fidele-YYfzJhfNU14-unsplash.jpg')} style={styles.image} />
                     <View style={styles.profiledetails}>
                         <Text style={{ fontWeight: "bold", fontSize: 20, marginBottom: 5 }}>Joan Shay</Text>
                         <Text style={{ fontWeight: "400", fontSize: 17,color:'gray' }}>Head of Marketing</Text>
