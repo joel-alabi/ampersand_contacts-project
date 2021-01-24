@@ -1,22 +1,28 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native'; 
-export default class Ampersand extends Component {
-    render() {
-        return (
+
+
+export default function Ampersand({ route, navigation }) {
+    let Ampersand = route.params;
+    return (
+        
             <View style={styles.welcome}>
                <Image source={require('../assets/ampersand-removebg-preview.png')} style={styles.Image}/>
                <View style={styles.Ampersand}>
                    <Text style={styles.text}>AMPERSAND</Text>
                    <Text style={styles.contact}>CONTACT</Text>
                </View>
-               <TouchableOpacity style={styles.getstarted}>
+               <TouchableOpacity style={styles.getstarted} onPress={() => {
+                navigation.navigate('WelcomeScreen')
+            }}>
                    <Text style={{fontWeight:'300', fontSize:17}}>GET STARTED</Text>
                    <Text style={styles.empty}></Text>
                </TouchableOpacity>
             </View>
-        )
-    }
+        
+    )
 }
+
 const styles = StyleSheet.create({
     welcome: {
       backgroundColor: '#fff',
