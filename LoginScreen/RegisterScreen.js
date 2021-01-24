@@ -136,7 +136,7 @@ const styles=StyleSheet.create({
   },
   signInImage:{
       width:420,
-      height:260,
+      height:190,
   },
     emailPasswordInputContainer:{
         flexDirection:'row',
@@ -150,7 +150,7 @@ const styles=StyleSheet.create({
   passwordInputContainer:{
     flexDirection:'row',
     justifyContent:'space-between',
-    marginVertical:5,
+    marginVertical:2,
 },
 signInImageContainer:{
     marginBottom:0,
@@ -166,7 +166,7 @@ signInImageContainer:{
       width:175
   },
   selectImageText:{
-      paddingVertical:2,
+      paddingVertical:5,
       fontSize:15,
       paddingHorizontal:10,
       color:'white',
