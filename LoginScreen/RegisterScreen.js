@@ -7,10 +7,40 @@ import Constants from 'expo-constants';
 export default class RegisterScreen extends Component {
     constructor(props){
         super(props)
-        this.state={
-            image:null
+        this.state={image:null
         }
+        this.ImageSection=this.ImageSection.bind(this)
     }
+    ImageSection =()=>{
+        if(this.state.image===null){
+
+            return(
+                <View style={styles.addNewImageContainer}>
+                    <Image style={styles.addNewImage} source={require('../assets/addUserPic.png')} />
+                
+                    <View style={styles.selectImageContainer} >
+                        <TouchableOpacity style={styles.addNewImageBtn} onPress={this.selectPicture}>
+                            <Text style={styles.addNewImageText}>ADD PROFILE PHOTO</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            )
+        }
+       else if(this.state.image!==null){
+            return(
+                <View style={styles.signInImageContainer}>
+                    <Image style={styles.signInImage} source={{uri:this.state.image}} />
+                
+                    <View style={styles.selectImageContainer} >
+                        <TouchableOpacity style={styles.selectImageBtn} onPress={this.selectPicture}>
+                            <Text style={styles.selectImageText}>EDIT PROFILE PHOTO</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            )
+        } 
+    }
+
     selectPicture = async () => {
         await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
         const { cancelled, uri } = await ImagePicker.launchImageLibraryAsync({
@@ -27,17 +57,17 @@ export default class RegisterScreen extends Component {
         });
         this.setState({ image: uri });
       };
-    render() {
+    render() {const {navigation} = this.props
         return (
             
             <View >
-            <View style={styles.signInImageContainer}> 
-                    <Image style={styles.signInImage} source={{uri:this.state.image}} />
-                    <View style={styles.selectImageContainer} >
-                        <TouchableOpacity style={styles.selectImageBtn} onPress={this.selectPicture}>
-                            <Text style={styles.selectImageText}>EDIT PROFILE PHOTO</Text>
-                        </TouchableOpacity>
-                    </View>
+            <View > 
+                   
+            <View > 
+                    
+                    {this.ImageSection()}
+                   
+                </View>  
                 </View>
             <View style={styles.sectionTwoContainer}>
             <View style={styles.emailPasswordInputContainer}>
@@ -113,7 +143,7 @@ export default class RegisterScreen extends Component {
                         </View>                                                 
                     </View>
                               <View style={styles.registerBtnContainer}>
-                            <TouchableOpacity style={styles.registerBtn}>
+                            <TouchableOpacity style={styles.registerBtn} onPress={() => { navigation.navigate("QRcodeDetails") }}>
                                 <Text style={styles.registerBtnText}>
                                     REGISTER
                                 </Text>
@@ -128,8 +158,26 @@ export default class RegisterScreen extends Component {
 const styles=StyleSheet.create({
     container:{
         flex:1,
-        marginVertical:20,
+       
         backgroundColor:'#F4F5F1',      
+  },
+  addNewImageContainer:{
+    alignItems:'center',
+    paddingVertical:50,
+    height:210,
+    backgroundColor:'#fbfbfb'
+    
+},
+addNewImage:{
+    marginTop:15,
+    marginBottom:15,
+
+},
+addNewImageText:{
+    color:'#fe2b4c'
+},
+  selectImageContainer:{
+paddingLeft:10
   },
   emailInputContainer:{
       textAlign:'right'

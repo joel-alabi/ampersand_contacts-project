@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
     },
     Image:{
-        height:200,
+        height:320,
         width:"100%",
     },
     Ampersand:{

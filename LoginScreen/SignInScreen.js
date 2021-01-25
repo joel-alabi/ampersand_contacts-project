@@ -1,35 +1,25 @@
 import React, { Component } from 'react'
 import { StyleSheet, View,Image,Text ,TouchableOpacity,TextInput,Platform} from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
+
 
 
 
 export default class SignInScreen extends Component  {
-    state = {
-        spinner: false
-      };
     
-      componentDidMount() {
-        setInterval(() => {
-          this.setState({
-            spinner: !this.state.spinner
-          });
-        }, 5000);
-      }
+    
 
 
     render() {
+        
+        const {navigation} = this.props
         return (
+            
             <View style={styles.SignIn}>
-<Spinner
-          visible={this.state.spinner}
-          textContent={'Loading....'}
-          textStyle={styles.spinnerTextStyle}
-        />
+
             
                  <Image source={require('../assets/ishant-mishra-napAS8Izafs-unsplash.jpg')} style={styles.Image}/>
 
-                 <Text style={{ fontSize: 15, color: "#ab3d35", marginLeft: 30,paddingTop:20, }}>Email or Password is incorrect check and try again</Text>
+                
 <View style={styles.SignInScreen}>
             <View style={{
                 flexDirection: "row",
@@ -51,16 +41,14 @@ export default class SignInScreen extends Component  {
                 <Text style={{ fontWeight: "bold", fontSize: 15, marginLeft: 15,marginBottom:35 }}>Password</Text>
                 <TextInput style={{ marginRight: 20,marginBottom:35 }}
                     placeholderTextColor="#aaaaaa"
-                    placeholder="Password"
+                    placeholder="****"
                     secureTextEntry={true}
                 />
             </View>
 
             <View>
-                <TouchableOpacity style={styles.buttonContainer} > 
-                
-               
-                    <Text style={styles.buttonText}>SIGN IN</Text>
+                <TouchableOpacity style={styles.buttonContainer}  onPress={() => { navigation.navigate("QRcodeDetails") }}> 
+             <Text style={styles.buttonText}>SIGN IN</Text>
                 </TouchableOpacity>
             </View>
 

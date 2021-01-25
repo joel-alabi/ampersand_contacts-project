@@ -3,20 +3,20 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { QRCode  as CustomQRcode} from 'react-native-custom-qr-codes-expo';
 
 
-export default function QrcodeDetails() {
+export default function QrcodeDetails({ route, navigation }) {
+    let QrcodeDetails = route.params;
     return (
         <View style={styles.maincontainer}>
                 <View style={styles.container}>
 
                     <View style={styles.Exchang}>
                         <Text style={{
-                            fontWeight: "bold", fontSize: 17, marginBottom: 5,marginRight: 70}}>Exchange Contact Information</Text>
-                        <Text style={{fontSize: 15,marginRight:20}}>Scan this QR below to share your contacts</Text>
+                            fontWeight: "bold", fontSize: 20, marginBottom: 5,marginRight: 70}}>Exchange Contact Information</Text>
+                        <Text style={{fontSize: 17,marginRight:20}}>Scan this QR below to share your contacts</Text>
+                        <CustomQRcode content='https://www.compassion.com' codeStyle='square' size={250} style={{marginTop:55}}/>
                     </View>
 
-                    <View style={styles.QRcode}>
-                        <CustomQRcode content='https://www.compassion.com' codeStyle='square' size={250}s/>
-                    </View>
+                   
 
                     
                     <View style={styles.Info}>
@@ -38,7 +38,9 @@ export default function QrcodeDetails() {
                     </Text>
                 </View>
                 <View style={styles.scancontainer}>
-                    <TouchableOpacity style={styles.scan} >
+                    <TouchableOpacity style={styles.scan} onPress={() => {
+                    navigation.navigate('QRScanning')
+                }}>
                         <Text style={styles.scancodeText}>Scan QR</Text>
                     </TouchableOpacity>
                 </View>
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
         color: "white",
     },
     Exchang: {
-        marginTop: 70,
+      paddingTop:20,
         alignItems: "center",
     },
     Info:{
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     },
     profile: {
         flexDirection: "row",
-        marginTop: 70,
+        marginTop: 140,
 
     },
     profiledetails: {
@@ -84,8 +86,8 @@ const styles = StyleSheet.create({
         width: 80,
     },
     footer:{
-        paddingTop:20,
-        marginTop:80,
+        paddingTop:10,
+        marginTop:40,
         paddingHorizontal:9,
         flexDirection:'row',
         justifyContent:'space-between',
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
         borderRadius:3,
     },
     QRCode:{
-        alignItems: "center",  
-        marginTop:20,
+        marginTop: 50,
+        alignItems: "center",
     }
 })

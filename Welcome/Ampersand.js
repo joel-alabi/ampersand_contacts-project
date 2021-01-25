@@ -25,17 +25,16 @@ export default function Ampersand({ route, navigation }) {
 
 const styles = StyleSheet.create({
     welcome: {
-      backgroundColor: '#fff',
       alignItems: 'center',
       marginTop:130
     },
     Image:{
         height:70,
-        width:250
+        width:220
     },
     Ampersand:{
     textAlign:'center',
-    marginTop:130,
+    marginTop:150,
     },
     text:{
         fontSize:25,

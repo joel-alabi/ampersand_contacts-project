@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button ,TouchableOpacity} from 'react-native';
+import React from 'react';
+import { Text, View, StyleSheet, Button ,TouchableOpacity,Image} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { AntDesign, Entypo } from '@expo/vector-icons';
+import { useState, useEffect } from 'react';
+import { SimpleLineIcons } from '@expo/vector-icons';
 
-export default function QRScanning() {
-    
+export default function QRScanning({route,navigation}) {
+  let QRScanning= route.params
+
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -16,7 +19,7 @@ export default function QRScanning() {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    
+    navigation.navigate("MemberProfile")
   };
 
   if (hasPermission === null) {
@@ -34,19 +37,21 @@ export default function QRScanning() {
       />
       <View style={styles.icons}>
                 <Entypo name="flash" size={24} color="white" style={{ marginRight: 60 }} />
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => { navigation.navigate("QrcodeDetails") }}>
                     <AntDesign name="close" size={24} color="white" />
                 </TouchableOpacity>
+               
             </View>
+             <SimpleLineIcons name="frame" size={300} color="white"  style={{ marginLeft: 33,justifyContent:'center',flex:1,marginTop:80 }}/>
 
-            <Text style={{ alignSelf: "center", fontWeight: "700",color:"white" ,marginTop:5}}>Scan QR Code </Text>
+            <Text style={{ alignSelf: "center", fontWeight: "700",color:"white" ,marginVertical:90}}>Scan QR Code with Frame </Text>
 
             <View style={styles.footer}>
                 <Text style={{
                     marginHorizontal: 20, color: "black",
                 }}>Want to share your contact?</Text>
 
-                <TouchableOpacity  style={styles.scan}>
+                <TouchableOpacity    onPress={() => {navigation.navigate("QrcodeDetails") }} style={styles.scan}>
                     <Text style={{ color: 'red' }}>Send QR</Text>
                 </TouchableOpacity>
             </View>
@@ -64,6 +69,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop:80
+},
+Image:{
+  height:100,
+  width:90,
+  paddingLeft:200
 },
 footer: {
     flexDirection: "row",
