@@ -100,7 +100,7 @@ export default function App() {
               />
             ),
             headerStyle:{
-              backgroundColor:"#de4f45"
+              backgroundColor:"#e83a63"
             },
             headerTintColor: "white",
             headerTitleAlign: "center",

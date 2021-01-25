@@ -97,10 +97,10 @@ const styles = StyleSheet.create({
         borderTopColor:'gray'
     },
     scan:{
-        color:'red',
+        color:'#e83a63',
         borderStyle:'solid',
         borderRadius:1,
-        borderColor:'red',
+        borderColor:'#e83a63',
         paddingVertical:5,
         borderWidth:1
     },
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     scancode:{
         borderStyle:'solid',
         borderWidth:1,
-        borderColor:'red',
+        borderColor:'#e83a63',
         borderRadius:3,
     },
     QRCode:{

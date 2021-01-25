@@ -37,7 +37,7 @@ export default function QRScanning({route,navigation}) {
       />
       <View style={styles.icons}>
                 <Entypo name="flash" size={24} color="white" style={{ marginRight: 60 }} />
-                <TouchableOpacity onPress={() => { navigation.navigate("QrcodeDetails") }}>
+                <TouchableOpacity onPress={() => { navigation.navigate("QRcodeDetails") }}>
                     <AntDesign name="close" size={24} color="white" />
                 </TouchableOpacity>
                
@@ -51,7 +51,7 @@ export default function QRScanning({route,navigation}) {
                     marginHorizontal: 20, color: "black",
                 }}>Want to share your contact?</Text>
 
-                <TouchableOpacity    onPress={() => {navigation.navigate("QrcodeDetails") }} style={styles.scan}>
+                <TouchableOpacity  onPress={() => {navigation.navigate("QRcodeDetails") }} style={styles.scan}>
                     <Text style={{ color: 'red' }}>Send QR</Text>
                 </TouchableOpacity>
             </View>
@@ -86,7 +86,7 @@ scan:{
     backgroundColor: "white",
     borderRadius: 3,
     borderStyle: "solid",
-    borderColor: "red",
+    borderColor: "#e83a63",
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderWidth: 1

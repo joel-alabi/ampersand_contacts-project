@@ -157,9 +157,7 @@ export default class RegisterScreen extends Component {
 }
 const styles=StyleSheet.create({
     container:{
-        flex:1,
-       
-        backgroundColor:'#F4F5F1',      
+        flex:1,     
   },
   addNewImageContainer:{
     alignItems:'center',
@@ -250,7 +248,7 @@ signInImageContainer:{
       marginBottom:40,
   },
   registerBtn:{
-      backgroundColor:"#FE2B4C",
+      backgroundColor:"#e83a63",
       paddingHorizontal:139,
       paddingVertical:10,
       borderRadius:4,
