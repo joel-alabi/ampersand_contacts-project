@@ -94,10 +94,7 @@ export default function App() {
       <Stack.Screen 
        options={({route, navigation}) => ({
         headerTitle: (
-              <Image
-                style={styles.image}
-                source={require("./assets/LogoOrigninal.png")}
-              />
+              <Text>AMPERSAND</Text>
             ),
             headerStyle:{
               backgroundColor:"#e83a63"

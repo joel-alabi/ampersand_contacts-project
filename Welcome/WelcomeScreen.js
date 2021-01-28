@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
     },
     Image:{
-        height:320,
+        height:400,
         width:"100%",
     },
     Ampersand:{
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
             color:'gray'
         },
         press:{
-            marginTop:230,
+            marginTop:130,
             flexDirection:'row',
             justifyContent:'space-around'
         }

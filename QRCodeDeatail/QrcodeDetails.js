@@ -13,11 +13,13 @@ export default function QrcodeDetails({ route, navigation }) {
                         <Text style={{
                             fontWeight: "bold", fontSize: 20, marginBottom: 5,marginRight: 70}}>Exchange Contact Information</Text>
                         <Text style={{fontSize: 17,marginRight:20}}>Scan this QR below to share your contacts</Text>
-                        <CustomQRcode content='https://www.compassion.com' codeStyle='square' size={250} style={{marginTop:55}}/>
+                        
                     </View>
 
-                   
-
+                   <View style={styles.QRCodes}>
+                          <CustomQRcode content='https://www.compassion.com'  size={230} />
+                   </View>
+                        
                     
                     <View style={styles.Info}>
                         <View style={styles.profile}>
@@ -50,8 +52,8 @@ export default function QrcodeDetails({ route, navigation }) {
 }
 const styles = StyleSheet.create({
     container: {
-        flexDirection:"column"
-
+        flexDirection:"column",
+        
     },
 
     heading: {
@@ -64,16 +66,21 @@ const styles = StyleSheet.create({
     left: {
         color: "white",
     },
+    QRCodes:{
+        marginTop:60,
+      marginLeft:60,
+    },
     Exchang: {
       paddingTop:20,
         alignItems: "center",
+        
     },
     Info:{
         marginLeft:20
     },
     profile: {
         flexDirection: "row",
-        marginTop: 140,
+        marginTop: 100,
 
     },
     profiledetails: {
@@ -116,8 +123,5 @@ const styles = StyleSheet.create({
         borderColor:'#e83a63',
         borderRadius:3,
     },
-    QRCode:{
-        marginTop: 50,
-        alignItems: "center",
-    }
+    
 })
