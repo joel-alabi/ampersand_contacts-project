@@ -1,17 +1,35 @@
 import React, { Component } from 'react'
 import { StyleSheet, View,Image,Text ,TouchableOpacity,TextInput,Platform} from 'react-native';
+import {connect} from 'react-redux'
+import {loginEmailAccount} from '../src/redux/actions/authActions'
 
 
+ class SignInScreen extends Component  {
+    constructor(props){
+        super(props)
+        this.state={
+            email:"",
+            password:"",
+        }
 
+    }
 
-export default class SignInScreen extends Component  {
-    
+        handleUpdateState=(name,value)=>{
+        this.setState({
+            [name]:value
+          })
+        }
+
+        handleOnSubmit =()=>{
+       this.props.loginEmailAccount(this.state.email,this.state.password)
+        }
+
     
 
 
     render() {
         
-        const {navigation} = this.props
+        const {navigation,auth} = this.props
         return (
             
             <View style={styles.SignIn}>
@@ -19,7 +37,10 @@ export default class SignInScreen extends Component  {
             
                  <Image source={require('../assets/ishant-mishra-napAS8Izafs-unsplash.jpg')} style={styles.Image}/>
 
-                
+                 {
+                auth.error.login && 
+                <Text style={{color:'red'}}>{auth.error.login}</Text>
+                }
 <View style={styles.SignInScreen}>
             <View style={{
                 flexDirection: "row",
@@ -30,6 +51,10 @@ export default class SignInScreen extends Component  {
                 <TextInput style={{ marginRight: 20,marginBottom:10 }}
                     placeholderTextColor="#aaaaaa"
                     placeholder="joelalabi45@gmail.com"
+                    value={this.state.email}
+                    onChangeText={(text)=>{
+                    this.handleUpdateState('email',text) 
+                    }}
                 />
             </View>
 
@@ -43,11 +68,16 @@ export default class SignInScreen extends Component  {
                     placeholderTextColor="#aaaaaa"
                     placeholder="****"
                     secureTextEntry={true}
+                    value={this.state.password}
+                     onChangeText={(text)=>{
+                     this.handleUpdateState('password',text) 
+                 }}
                 />
             </View>
 
             <View>
-                <TouchableOpacity style={styles.buttonContainer}  onPress={() => { navigation.navigate("QRcodeDetails") }}> 
+                <TouchableOpacity style={styles.buttonContainer} 
+                 onPress={(this.handleOnSubmit)}> 
              <Text style={styles.buttonText}>SIGN IN</Text>
                 </TouchableOpacity>
             </View>
@@ -118,4 +148,7 @@ const styles = StyleSheet.create({
        paddingTop:50
    }
   });
-  
+  const mapStateToProp=(state)=>{
+    return{ auth:state}
+}
+  export default connect(mapStateToProp,{loginEmailAccount})(SignInScreen);

@@ -2,15 +2,24 @@ import React, { Component } from 'react'
 import {View,Image,Text,StyleSheet,TouchableOpacity,Button, TextInput, ScrollView} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-import Constants from 'expo-constants';
+import {connect} from 'react-redux'
+import {createEmailAccount,registerError} from '../src/redux/actions/authActions'
 
-export default class RegisterScreen extends Component {
+class RegisterScreen extends Component {
     constructor(props){
         super(props)
-        this.state={image:null
+        this.state={
+            image:null,
+            email:"",
+            password:"",
+            confirm:""
         }
+
         this.ImageSection=this.ImageSection.bind(this)
     }
+
+
+
     ImageSection =()=>{
         if(this.state.image===null){
 
@@ -57,9 +66,26 @@ export default class RegisterScreen extends Component {
         });
         this.setState({ image: uri });
       };
-    render() {const {navigation} = this.props
+
+        handleUpdateState=(name,value)=>{
+        this.setState({
+            [name]:value
+          })
+        }
+
+        handleOnSubmit =()=>{
+            if (this.state.password !==this.state.confirm){
+              this.props.registerError('pass word do not match')
+            return;
+            }
+       this.props.createEmailAccount(this.state.email,this.state.password)
+
+        }
+
+
+    render() {const {navigation,auth} = this.props
         return (
-            
+            <ScrollView>
             <View >
             <View > 
                    
@@ -69,17 +95,23 @@ export default class RegisterScreen extends Component {
                    
                 </View>  
                 </View>
+                {
+                auth.error.register && 
+                <Text style={{color:'red'}}>{auth.error.register}</Text>
+                }
+                
             <View style={styles.sectionTwoContainer}>
             <View style={styles.emailPasswordInputContainer}>
-                        <View style={styles.emailTextContainer}>
+                           <View style={styles.emailTextContainer}>
                             <Text style={styles.emailPasswordText}>
                                Full Name
                             </Text>
-                        </View>
-                        <View>
+                           </View>
+            <View>
                             <TextInput
                                 placeholder="joan shay"                                    
-                                style={styles.emailPasswordInput}></TextInput>
+                                style={styles.emailPasswordInput}>    
+                                </TextInput>
                         </View>                                                 
                     </View>
             <View style={styles.emailPasswordInputContainer}>
@@ -91,7 +123,50 @@ export default class RegisterScreen extends Component {
                         <View>
                             <TextInput
                                 placeholder="joan.shay@sparrow.com"                                    
+                               value={this.state.email}
+                               onChangeText={(text)=>{
+                               this.handleUpdateState('email',text) 
+                               }}
                                 style={styles.emailPasswordInput}></TextInput>
+                        </View>                                                 
+                    </View>
+                    <View style={styles.emailPasswordInputContainer}>
+                        <View style={styles.emailTextContainer}>
+                            <Text style={styles.emailPasswordText}>
+                                Password
+                            </Text>
+                        </View>
+                        <View>
+                            <TextInput
+                                placeholder="****"                                    
+                               secureTextEntry={true}
+                               value={this.state.password}
+                               onChangeText={(text)=>{
+                               this.handleUpdateState('password',text) 
+                               }}
+
+                               style={styles.emailPasswordInput}>
+
+                               </TextInput>
+                        </View>                                                 
+                    </View>
+                    <View style={styles.emailPasswordInputContainer}>
+                        <View style={styles.emailTextContainer}>
+                            <Text style={styles.emailPasswordText}>
+                                Confirm Password
+                            </Text>
+                        </View>
+                        <View>
+                            <TextInput
+                                placeholder="****"                                    
+                               secureTextEntry={true}
+                               value={this.state.confirm}
+                               onChangeText={(text)=>{
+                               this.handleUpdateState('confirm',text) 
+                               }}
+                               style={styles.emailPasswordInput}>
+
+                               </TextInput>
                         </View>                                                 
                     </View>
             <View style={styles.emailPasswordInputContainer}>
@@ -143,7 +218,8 @@ export default class RegisterScreen extends Component {
                         </View>                                                 
                     </View>
                               <View style={styles.registerBtnContainer}>
-                            <TouchableOpacity style={styles.registerBtn} onPress={() => { navigation.navigate("QRcodeDetails") }}>
+                            <TouchableOpacity style={styles.registerBtn} 
+                            onPress={this.handleOnSubmit}>
                                 <Text style={styles.registerBtnText}>
                                     REGISTER
                                 </Text>
@@ -151,7 +227,7 @@ export default class RegisterScreen extends Component {
                         </View>
             </View>
             </View>
-            
+            </ScrollView>
         )
     }
 }
@@ -162,13 +238,13 @@ const styles=StyleSheet.create({
   addNewImageContainer:{
     alignItems:'center',
     paddingVertical:50,
-    height:210,
+    height:200,
     backgroundColor:'#fbfbfb'
     
 },
 addNewImage:{
-    marginTop:15,
-    marginBottom:15,
+    marginTop:10,
+    marginBottom:5,
 
 },
 addNewImageText:{
@@ -222,7 +298,7 @@ signInImageContainer:{
       borderColor:'white'
   },
   sectionTwoContainer:{
-    paddingTop:5,
+    paddingTop:2,
     paddingHorizontal:10,
   },
   emailPasswordInput:{
@@ -244,8 +320,8 @@ signInImageContainer:{
   registerBtnContainer:{     
       justifyContent:'center',
       alignItems:'center',
-      marginTop:30,
-      marginBottom:40,
+      marginTop:10,
+      marginBottom:10,
   },
   registerBtn:{
       backgroundColor:"#e83a63",
@@ -263,6 +339,11 @@ signInImageContainer:{
     borderBottomColor:'red',
     paddingBottom:5,
     margin:5,
-    borderBottomWidth:2,
+    borderBottomWidth:1,
   },
 })
+const mapStateToProp=(state)=>{
+    return{ auth:state}
+}
+
+export default connect(mapStateToProp,{createEmailAccount,registerError})(RegisterScreen);
