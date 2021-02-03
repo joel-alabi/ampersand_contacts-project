@@ -15,9 +15,10 @@ import { createStackNavigator } from '@react-navigation/stack'
 const Stack = createStackNavigator()
 
 import {connect} from 'react-redux';
+import {logout} from '../redux/actions/authActions';
 
 
-function AppNavigation({auth}) {
+function AppNavigation({auth,logout}) {
   return (
     <View style={styles.container}>
       <NavigationContainer>
@@ -57,8 +58,15 @@ name="MemberProfile" component={MemberProfile} />
  options={{
       title: " My Profile",
       headerStyle:{
-        backgroundColor:"#e83a63"
-      },
+        backgroundColor:"#e83a63",
+        
+      },headerRight:()=>(
+          <TouchableOpacity style={{marginRight:10}}
+          onPress={logout}
+          >
+            <Text>LOGOUT</Text>
+          </TouchableOpacity>
+        ),
       headerTintColor: "white",
       headerTitleAlign: "center",
     }}
@@ -128,8 +136,9 @@ const styles = StyleSheet.create({
   },
  
 });
+
 const mapStateToProp=(state)=>{
   return{ auth:state}
 }
 
-export default connect(mapStateToProp)(AppNavigation);
+export default connect(mapStateToProp,{logout})(AppNavigation);

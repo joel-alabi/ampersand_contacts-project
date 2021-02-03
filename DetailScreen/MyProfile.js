@@ -1,5 +1,5 @@
 import React from 'react'
-import { View,Image,Text,StyleSheet } from 'react-native';
+import { View,Image,Text,StyleSheet,TouchableOpacity } from 'react-native';
 
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,7 +7,10 @@ import { AntDesign } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-export default function MyProfile() {
+
+ 
+function MyProfile() {
+
     return (
         <View style={styles.container}>
 
@@ -43,6 +46,7 @@ export default function MyProfile() {
                 </View>
                  </View>
                 
+                
             </View>
     )
 }
@@ -72,5 +76,9 @@ const styles = StyleSheet.create({
        marginTop:18,
        marginLeft:25,
        flexDirection:'row'
-   }
+   },
+  
 })
+
+
+export default MyProfile;
